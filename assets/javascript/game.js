@@ -30,65 +30,54 @@ connectionsRef.on("value", function (snap) {
 
 var playerOne = "";
 var playerTwo = "";
-var highPrice = initialBid;
-var highBidder = initialBidder;
 
-database.ref("/bidderData").on("value", function (snapshot) {
+$(document).ready(function () {
 
-    if (snapshot.child("highBidder").exists() && snapshot.child("highPrice").exists()) {
 
-        highBidder = snapshot.val().highBidder;
-        highPrice = parseInt(snapshot.val().highPrice);
 
-        $("#highest-bidder").text(snapshot.val().highBidder);
-        $("#highest-price").text("$" + snapshot.val().highPrice);
 
-        console.log(snapshot.val().highBidder);
-        console.log(snapshot.val().highPrice);
+    $(".pOne").on("click", function () {
+        var x = $(this).attr("value");
+        console.log("P1 "+x);
+    });
 
+
+    $(".pTwo").on("click", function () {
+        var x = $(this).attr("value");
+        console.log("P2 "+x);
+    });
+
+
+
+});
+
+
+database.ref("/game").on("value", function (snapshot) {
+
+    if (snapshot.child("pOneMove").exists() && snapshot.child("pTwoMove").exists()) {
+
+        console.log("tem algo aqui");
     } else {
 
-        $("#highest-bidder").text(highBidder);
-        $("#highest-price").text("$" + highPrice);
+        console.log("nao tem");
 
-        console.log("local High Price");
-        console.log(highBidder);
-        console.log(highPrice);
     }
 
 }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
 });
 
-$("#submit-bid").on("click", function (event) {
+$("#gameBtn").on("click", function (event) {
     event.preventDefault();
 
-    var bidderName = $("#bidder-name").val().trim();
+    var playerMove = $(".pOne").attr("value");
     var bidderPrice = parseInt($("#bidder-price").val().trim());
 
-    console.log(bidderName);
-    console.log(bidderPrice);
+    $(".pOne").on("click", function () {
+        var x = $(this).attr("value");
 
-    if (bidderPrice > highPrice) {
-
-        alert("You are now the highest bidder.");
-
-        database.ref("/bidderData").set({
-            highBidder: bidderName,
-            highPrice: bidderPrice
-        });
-
-        console.log("New High Price!");
-        console.log(bidderName);
-        console.log(bidderPrice);
-
-        highBidder = bidderName;
-        highPrice = parseInt(bidderPrice);
-
-        $("#highest-bidder").text(bidderName);
-        $("#highest-price").text("$" + bidderPrice);
     } else {
 
-        alert("Sorry that bid is too low. Try again.");
+
     }
 });
