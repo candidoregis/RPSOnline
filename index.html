@@ -8,61 +8,42 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleFP.css">
 </head>
 
 <body>
 
-    <header>
-        <!-- <img src="assets/images/rps.gif" alt=""> -->
-        <h1>R0ck P4p35 5c1550r5</h1>
-    </header>
+    <div class="container">
 
+        <div class="firstPage">
+            <h1>Play RPS Online? Click in the image!</h1>
+        </div>
 
-
-    <div class="board">
-        <div id="playerOne" class="players">Player One</div>
-        <div id="playerTwo" class="players">Player Two</div>
-        <span id="pOneScore">0</span>:<span id="pTwoScore">0</span>
-    </div>
-
-    <div class="result">
-        <p>bla bla bla</p>
-    </div>
-
-    <div class="playersBoard">
-        <div class="options pOneOptions">
-            <div class="choice">
-                <img src="assets/images/mrock.png" value="rock" class="pOne" alt="rock">
-            </div>
-            <div class="choice">
-                <img src="assets/images/mpaper.png" value="paper" class="pOne" alt="paper">
-            </div>
-            <div class="choice">
-                <img src="assets/images/mscissors.png" value="scissors" class="pOne" alt="scissors">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-notify modal-warning" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h2 class="modal-title white-text w-100 font-weight-bold py-2">Preparing...</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="md-form mb-5">
+                            <input type="text" id="playerName" class="form-control" placeholder="Enter your Name here">
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <a href="game.html" id="playGame" type="button" class="btn btn-outline-warning waves-effect">PLAY</a>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="options pTwoOptions">
-            <div class="choice">
-                <img src="assets/images/mrock.png" class="pTwo" value="rock" alt="rock">
-            </div>
-            <div class="choice">
-                <img src="assets/images/mpaper.png" class="pTwo" value="paper" alt="paper">
-            </div>
-            <div class="choice">
-                <img src="assets/images/mscissors.png" class="pTwo" value="scissors" alt="scissors">
-            </div>
+        <div class="text-center">
+            <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#myModal">
+                <img src="assets/images/rps.gif" alt="">
+            </a>
         </div>
 
-
-
-
-    </div>
-    <p id="action">Choose your move!</p>
-    
-    <div class="gameOn">
-        <button class="button" id="gameBtn" type="submit">Play Game!</button>
     </div>
 
     <!-- JQuery References -->

@@ -13,71 +13,75 @@ firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
-var connectionsRef = database.ref("/connections");
+var count = 0;
 
-var connectedRef = database.ref(".info/connected");
+var playerKey = "";
 
-connectedRef.on("value", function (snap) {
-    if (snap.val()) {
-        var con = connectionsRef.push(true);
-        con.onDisconnect().remove();
-    }
+var playersList = {};
+
+var players_list = 'player_list'; //players location
+var player_data = 'player_data'; //game location
+var score = 'player_scores';
+
+database.ref().on("child_added", function (snap) {
+    count++;
+    // playerKey = snap.key;
 });
 
-connectionsRef.on("value", function (snap) {
-    $("#connected-viewers").text(snap.numChildren());
-});
+function getMyUserId() {
+    var playerName = $('#playerName').val();
+    return playerName;
+}
 
-var playerOne = "";
-var playerTwo = "";
+function addPlayer(player) {
+    database.ref(player_data).child(players_list).push(player);
+}
 
-$(document).ready(function () {
+function assignPlayerNumber() {
+    var myUserId = getMyUserId();
+    var score = 0;
+    var play = "";
+    var player = 0; 
+    var myPlayerNumber = "";
 
+    var playerList = database.ref(player_data).child(players_list);
 
+    var player = {
+        myUserId: myUserId,
+        score: score,
+        play: play,
+        player: player
+    };
 
-
-    $(".pOne").on("click", function () {
-        var x = $(this).attr("value");
-        console.log("P1 "+x);
-    });
-
-
-    $(".pTwo").on("click", function () {
-        var x = $(this).attr("value");
-        console.log("P2 "+x);
-    });
-
-
-
-});
-
-
-database.ref("/game").on("value", function (snapshot) {
-
-    if (snapshot.child("pOneMove").exists() && snapshot.child("pTwoMove").exists()) {
-
-        console.log("tem algo aqui");
+    if (count == 0) {
+        player.player = 1;
+        playerList.push(player);
+    } else if (count == 1) {
+        player.player = 2;
+        playerList.push(player);
     } else {
-
-        console.log("nao tem");
-
+        console.log("Room is full, try again later");
     }
 
-}, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
+    //var query = firebase.database().ref(player_data).child(players_list);
+    playerList.once("value")
+        .then(function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                var childData = childSnapshot.val();
+                if(myUserId === childData.myUserId){
+                    myPlayerNumber = childData.player;
+                }
+                // console.log(childData.player);
+            });
+        });
+
+
+        playerList.child(myPlayerNumber).removeOnDisconnect();
+        playGame(myPlayerNumber, myUserId);
+}
+
+
+$("#playGame").on("click", function (event) {
+    assignPlayerNumber();
 });
 
-$("#gameBtn").on("click", function (event) {
-    event.preventDefault();
-
-    var playerMove = $(".pOne").attr("value");
-    var bidderPrice = parseInt($("#bidder-price").val().trim());
-
-    $(".pOne").on("click", function () {
-        var x = $(this).attr("value");
-
-    } else {
-
-
-    }
-});

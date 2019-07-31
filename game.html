@@ -13,18 +13,69 @@
 
 <body>
 
-    <div class="container">
-        <div class="Header">
-            <div></div>
-        </div>
-        <div class="PlayerOne">PlayerOne</div>
-        <div class="Content">Content</div>
-        <div class="PlayerTwo">PlayerTwo</div>
-        <div class="PlayerOneArea">PlayerOneArea</div>
-        <div class="VersusArea">VersusArea</div>
-        <div class="PlayerTwoArea">PlayerTwoArea</div>
-        <div class="Footer">Footer</div>
+    <header>
+        <a href="index.html"><h1>R0ck P4p35 5c1550r5</h1></a>
+    </header>
+
+    <div class="board">
+        <div id="playerOneName" class="players">Player One</div>
+        <div id="playerTwoName" class="players">Player Two</div>
+        <span id="pOneScore">0</span>:<span id="pTwoScore">0</span>
     </div>
+
+    <div class="result">
+        <p>You ... </p>
+    </div>
+
+    <div class="playersBoard">
+        <div class="options pOneOptions">
+            <div class="choice">
+                <img src="assets/images/mrock.png" value="rock" class="pOne" alt="rock">
+            </div>
+            <div class="choice">
+                <img src="assets/images/mpaper.png" value="paper" class="pOne" alt="paper">
+            </div>
+            <div class="choice">
+                <img src="assets/images/mscissors.png" value="scissors" class="pOne" alt="scissors">
+            </div>
+
+            <p id="action">Choose your move!</p>
+
+        </div>
+
+        <div class="options pTwoOptions">
+            <div class="choice">
+                <img src="assets/images/mrock.png" class="pTwo" value="rock" alt="rock">
+            </div>
+            <div class="choice">
+                <img src="assets/images/mpaper.png" class="pTwo" value="paper" alt="paper">
+            </div>
+            <div class="choice">
+                <img src="assets/images/mscissors.png" class="pTwo" value="scissors" alt="scissors">
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- JQuery References -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

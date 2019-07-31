@@ -13,7 +13,7 @@ header {
     padding: 20px;
 }
 
-header > h1 {
+a > h1 {
     color: #24272E;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -40,16 +40,16 @@ header > h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#playerOne {
+#playerOneName {
   position: absolute;
   top: 30px;
-  left: -30px;
+  left: -50px;
 }
 
-#playerTwo {
+#playerTwoName {
   position: absolute;
   top: 30px;
-  right: -30px;
+  right: -50px;
 }
 
 .result{
